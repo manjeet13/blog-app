@@ -6,7 +6,8 @@ var express          = require("express"),
     app              = express();
     
 
-mongoose.connect("mongodb://localhost/restful_blog_app");
+mongoose.connect(process.env.DATABASEURL);
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -124,6 +125,6 @@ app.delete("/blogs/:id", function(req, res){
 
 
 
-app.listen(3000, function(){
+app.listen(process.env.PORT, process.env.IP, function(){
     console.log("RESTful blog app is now live!");
 });
